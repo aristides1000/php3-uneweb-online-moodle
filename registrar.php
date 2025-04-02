@@ -14,7 +14,7 @@
 
 <div class="content-center">
   <strong>Agregar Usuarios</strong>
-  <form action="validacion.php" method="post">
+  <form name="usuarios" action="validacion.php" method="post">
     <table>
       <tr>
         <td><strong>Login:</strong></td>
