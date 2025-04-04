@@ -17,7 +17,7 @@
   <form name="usuarios" action="validacion.php" method="post">
     <table>
       <tr>
-        <td><strong>Login:</strong></td>
+        <td><strong>Email:</strong></td>
         <td><input name="login" type="text"></td>
       </tr>
       <tr>

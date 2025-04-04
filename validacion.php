@@ -4,14 +4,16 @@ include 'link.php';
 if(isset($_POST['val'])) {
   switch ($_POST['val']) {
     case 1 : //autentificacion de usuario login
-      if(isset($_POST['email']) && $_POST['email']!='' && isset($_POST['password']) && $_POST['password']!='')      {
+      if(isset($_POST['email']) && $_POST['email']!='' && isset($_POST['password']) && $_POST['password']!='') {
         #llegaron los datos
-        $sql = "select * from usuario where email='$_POST[email]'";
-        $query = mysqli_query($link,$sql);
+        $sql = "SELECT * FROM usuario WHERE email='$_POST[email]'";
+        $query = mysqli_query($link, $sql);
         $num = mysqli_num_rows($query);
         if ($num==0)
         {?>
-          <script> alert("No existe el usuario. "); </script><?php
+          <script> alert("No existe el usuario. "); </script>
+          <meta http-equiv="refresh" content="2;URL=./login.php" />
+          <?php
         }
         else
         {
@@ -19,7 +21,9 @@ if(isset($_POST['val'])) {
           $row = mysqli_fetch_array($query); # descargo en el arreglo $row la primera fila
           if ($row['password'] != md5($_POST['password']))
             {# No coincide contraseña?>
-              <script> alert("Contraseña Incorrecta. "); </script><?PHP
+              <script> alert("Contraseña Incorrecta. "); </script>
+              <meta http-equiv="refresh" content="2;URL=./login.php" />
+              <?PHP
           } else {
             # Autentificacion (Creamos variables de sesión con los datos del usuario)
             $_SESSION['id_usuario'] = $row['id_usuario'];
@@ -27,11 +31,16 @@ if(isset($_POST['val'])) {
             $_SESSION['apellido'] = $row['apellido'];
             $_SESSION['cedula'] = $row['cedula'];
             $_SESSION['tipo'] = $row['tipo'];
+            ?>
+              <meta http-equiv="refresh" content="2;URL=./index.php" />
+            <?PHP
           }
         }
       } else {
       ?>
-          <script> alert("Debe rellenar todos los datos. "); </script> <?php
+          <script> alert("Debe rellenar todos los datos. "); </script>
+          <meta http-equiv="refresh" content="2;URL=./login.php" />
+          <?php
       }
       break;
     case 2 :// registro de usarios
@@ -39,23 +48,28 @@ if(isset($_POST['val'])) {
           isset($_POST['nombre']) && $_POST['nombre']!='' && isset($_POST['apellido']) && $_POST['apellido']!='' &&
           isset($_POST['cedula']) && $_POST['cedula']!='')
         {
-          $sql = "insert into usuario
-              values('','$_POST[login]','".md5($_POST['password'])."','$_POST[nombre]', '$_POST[apellido]', '$_POST[cedula]', 'usuario')";
+          $sql = "INSERT INTO usuario (email, password, nombre,	apellido,	cedula,	tipo)
+          VALUES ('$_POST[login]', '".md5($_POST['password'])."', '$_POST[nombre]', '$_POST[apellido]', '$_POST[cedula]', 'usuario');";
 
           mysqli_query($link,$sql); // error en el insert
           if(mysqli_error($link))
           {?>
-            <script> alert("Error en el registro de usuario. intente de nuevo. "); </script> <?php
+            <script> alert("Error en el registro de usuario. intente de nuevo. "); </script>
+            <meta http-equiv="refresh" content="2;URL=./registrar.php" />
+            <?php
           }
           else
           { // sin error ?>
-            <script> alert("Usuario registrado exitosamente. "); </script> <?php
+            <script> alert("Usuario registrado exitosamente. "); </script>
+            <meta http-equiv="refresh" content="2;URL=./login.php" />
+            <?php
           }
         }
       else
         { // no se reciben los datos
         ?>
             <script> alert("Debe rellenar todos los datos. "); </script>
+            <meta http-equiv="refresh" content="2;URL=./registrar.php" />
       <?php
         }
       break;
@@ -71,32 +85,42 @@ if(isset($_POST['val'])) {
         #El índice 2 del arreglo que genera  getimagesize es una bandera que indica el tipo de imagen: 1 = GIF, 2 = JPG, 3 = PNG,
         if($tipo[2]!=1 && $tipo[2]!=2 && $tipo[2]!=3)
         { //1(gif) - 2(jpg) -3(png)  ?>
-          <script> alert("Tipo de imagen no permitido. "); </script><?php
+          <script> alert("Tipo de imagen no permitido. "); </script>
+          <meta http-equiv="refresh" content="2;URL=./producto.php" />
+          <?php
         }
         else
         { # el tipo de archivo es correcto se efectua la carga del producto
           if (copy($temporal,'images/'.$arch))
           {  # Foto copiada en la carpeta del servidor
-            $sql = "insert into producto values('','$_POST[nombre]','$_POST[precio]','$_POST[cantidad]','$_POST[descripcion]','$arch')";
+            $sql = "INSERT INTO producto (nombre,	precio,	cantidad,	descripcion,	imagen) VALUES('$_POST[nombre]', '$_POST[precio]', '$_POST[cantidad]', '$_POST[descripcion]', '$arch')";
             mysqli_query($link,$sql);
             if(mysqli_error($link))
             { #error en la insercion ?>
-              <script> alert("Error en la carga de los datos "); </script> <?php
+              <script> alert("Error en la carga de los datos "); </script>
+              <meta http-equiv="refresh" content="2;URL=./producto.php" />
+              <?php
             }
             else
             {# se cargaron los datos sin error?>
-              <script> alert("El producto ha sido ingresdo al sistema "); </script> <?php
+              <script> alert("El producto ha sido ingresdo al sistema ");</script>
+              <meta http-equiv="refresh" content="2;URL=./producto.php" />
+              <?php
             }
           }
           else
           {?>
-              <script> alert("Error en la carga de la foto. Intente de nuevo "); </script> <?php
+              <script> alert("Error en la carga de la foto. Intente de nuevo "); </script>
+              <meta http-equiv="refresh" content="2;URL=./producto.php" />
+              <?php
           }
         }
       }
       else
       { // no se reciben los datos ?>
-        <script> alert("Debe rellenar todos los datos "); </script> <?php
+        <script> alert("Debe rellenar todos los datos "); </script>
+        <meta http-equiv="refresh" content="2;URL=./producto.php" />
+        <?php
       }
       break;
   }

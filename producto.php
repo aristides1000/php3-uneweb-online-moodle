@@ -28,11 +28,11 @@
       </tr>
       <tr>
         <td><strong>Precio:</strong></td>
-        <td><input name="precio" type="text"></td>
+        <td><input name="precio" type="number"></td>
       </tr>
       <tr>
         <td><strong>Cantidad:</strong></td>
-        <td><input name="cantidad" type="text"></td>
+        <td><input name="cantidad" type="number"></td>
       </tr>
       <tr>
         <td><strong>Descripción:</strong></td>

@@ -5,7 +5,7 @@ USE d_php3;
 CREATE TABLE IF NOT EXISTS usuario (
   id_usuario INT NOT NULL AUTO_INCREMENT,
   email VARCHAR(30),
-  password VARCHAR(30),
+  password VARCHAR(32),
   nombre VARCHAR(30),
   apellido VARCHAR(30),
   cedula INT,
@@ -44,6 +44,6 @@ CREATE TABLE IF NOT EXISTS carrito (
 );
 
 INSERT INTO usuario (email, password, nombre, apellido, cedula, tipo)
-VALUES ('jose@gmail.com', '123', 'jose', 'perez', '321', 'Administrador'),
-('carlos@gmail.com', '456', 'carlos', 'jimenez', '654', 'usuario'),
-('maria@gmail.com', '789', 'maria', 'herrera', '987', 'usuario');
+VALUES ('jose@gmail.com', md5('123'), 'jose', 'perez', '321', 'Administrador'),
+('carlos@gmail.com', md5('456'), 'carlos', 'jimenez', '654', 'usuario'),
+('maria@gmail.com', md5('789'), 'maria', 'herrera', '987', 'usuario');
