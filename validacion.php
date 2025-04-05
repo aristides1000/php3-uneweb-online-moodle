@@ -93,7 +93,8 @@ if(isset($_POST['val'])) {
         { # el tipo de archivo es correcto se efectua la carga del producto
           if ($tipo !== false)
           {  # Si la foto ha sido cargada
-            $sql = "INSERT INTO producto (nombre,	precio,	cantidad,	descripcion,	imagen) VALUES('$_POST[nombre]', '$_POST[precio]', '$_POST[cantidad]', '$_POST[descripcion]', '$arch')";
+            $img_content = addslashes(file_get_contents($temporal));
+            $sql = "INSERT INTO producto (nombre,	precio,	cantidad,	descripcion,	imagen) VALUES('$_POST[nombre]', '$_POST[precio]', '$_POST[cantidad]', '$_POST[descripcion]', '$img_content')";
             mysqli_query($link, $sql);
             if(mysqli_error($link))
             { #error en la insercion ?>
