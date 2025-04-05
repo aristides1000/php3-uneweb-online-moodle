@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS producto (
   precio FLOAT,
   cantidad INT NOT NULL,
   descripcion VARCHAR(100),
-  imagen longblob,
+  imagen LONGBLOB,
   PRIMARY KEY(id_producto)
 );
 
