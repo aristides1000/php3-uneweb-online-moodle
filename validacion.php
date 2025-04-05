@@ -91,10 +91,10 @@ if(isset($_POST['val'])) {
         }
         else
         { # el tipo de archivo es correcto se efectua la carga del producto
-          if (copy($temporal,'images/'.$arch))
-          {  # Foto copiada en la carpeta del servidor
+          if ($tipo !== false)
+          {  # Si la foto ha sido cargada
             $sql = "INSERT INTO producto (nombre,	precio,	cantidad,	descripcion,	imagen) VALUES('$_POST[nombre]', '$_POST[precio]', '$_POST[cantidad]', '$_POST[descripcion]', '$arch')";
-            mysqli_query($link,$sql);
+            mysqli_query($link, $sql);
             if(mysqli_error($link))
             { #error en la insercion ?>
               <script> alert("Error en la carga de los datos "); </script>
@@ -110,7 +110,7 @@ if(isset($_POST['val'])) {
           }
           else
           {?>
-              <script> alert("Error en la carga de la foto. Intente de nuevo "); </script>
+              <script> alert("Error en la carga de la foto. Intente de nuevo"); </script>
               <meta http-equiv="refresh" content="2;URL=./producto.php" />
               <?php
           }
