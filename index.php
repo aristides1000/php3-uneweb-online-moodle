@@ -1,4 +1,10 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+?>
+
+<?php
 session_start();
 include 'link.php';
 include 'cabecera.php';
@@ -58,7 +64,7 @@ function carrito(idp) {
       <table width="320" border="1">
         <tr>
           <td width="40%" >
-            <img src="images/<?php echo $row['imagen']; ?>" name="img<?php echo $row['id']; ?>" border="0" width="120" height="90">
+            <img src="image.php?id=<?php echo $row['id_producto'] ?>" name="img-<?php echo $row['nombre']; ?>" border="0" width="120" height="90">
           </td>
           <td width="60%" >
             <b><?php echo $row['nombre']; ?></b>
