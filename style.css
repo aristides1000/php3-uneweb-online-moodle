@@ -53,3 +53,16 @@ input {
 .space-right {
   margin-right: 0.5rem;
 }
+
+.productos {
+  display: flex;
+  flex-wrap: wrap;
+  width: 75%;
+}
+
+.table-element {
+  width: 320px;
+  border: 2px black solid;
+  border-radius: 5px;
+  margin: 0.25rem;
+}

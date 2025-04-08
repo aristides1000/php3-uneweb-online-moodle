@@ -21,30 +21,41 @@ function carrito(idp) {
 </head>
 <body>
 
-<div class="dcont"><p align="right">
-<?php
-  if (!isset($_SESSION['id_usuario']))
-  { ?>
-    <a href="login.php">Login</a> | <a href="registrar.php">Registrarse</a><?php
-  }
-  else
-  {
-    echo 'Bienvenid@ '.$_SESSION['nombre'].' | ';
-    if ($_SESSION['tipo']=='Administrador')
-    {?>
-      <a href="producto.php">Productos</a> |  <?php
+<div class="navbar-menu">
+  <p>
+  <?php
+    if (!isset($_SESSION['id_usuario']))
+    { ?>
+      <span><a href="login.php">Login</a></span>
+      <span class="divisor">|</span>
+      <a href="registrar.php">Registrarse</a>
+      <?php
     }
     else
-    { ?>
-      <a href="carrito.php">Ver carrito </a> | <?php
-    }?>
-      <a href="cierre.php">Salir</a>&nbsp;&nbsp;&nbsp;&nbsp;<?php
-  }
-?>
-</p>
+    {
+      echo 'Bienvenid@ '.$_SESSION['nombre'].'
+      <span class="divisor">|</span>
+      ';
+      if ($_SESSION['tipo']=='Administrador')
+      {?>
+        <a href="producto.php">Productos</a>
+        <span class="divisor">|</span>
+        <?php
+      }
+      else
+      { ?>
+        <a href="carrito.php">Ver carrito </a>
+        <span class="divisor">|</span>
+        <?php
+      }?>
+        <a href="cierre.php">Salir</a>
+      <?php
+    }
+  ?>
+  </p>
 </div>
-<div class="dcont">
-  <div id="productos">
+<div class="content-center wrap">
+  <div id="productos" class="productos">
   <?php
   if($num==0)
   {
@@ -55,9 +66,9 @@ function carrito(idp) {
     while($row = mysqli_fetch_array($query))
     { ?>
     <div class="producto">
-      <table width="320" border="1">
+      <table class="table-element">
         <tr>
-          <td width="40%" >
+          <td width="40%">
             <?php
               $id_image = $row['id_producto'];
 
@@ -76,7 +87,7 @@ function carrito(idp) {
             if (isset($_SESSION['tipo']) && $_SESSION['tipo']=='usuario')
               { ?>
                 <a href="./agregar_carro.php?pro=<?php print $row [0];?>"  ?>
-                <img src="./images/addcarrito.png" width="33" height="23" id="carrito2" align="right" /></a><?php
+                <img src="./images/addcarrito.png" width="33" height="auto" id="carrito2" align="right" /></a><?php
               } ?>
               <br />
               <i>Precio</i>: Bs. <?php echo $row['precio']; ?><br />
