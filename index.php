@@ -64,7 +64,17 @@ function carrito(idp) {
       <table width="320" border="1">
         <tr>
           <td width="40%" >
-            <img src="image.php?id=<?php echo $row['id_producto'] ?>" name="img-<?php echo $row['nombre']; ?>" border="0" width="120" height="90">
+            <?php
+              $id_image = $row['id_producto'];
+
+              $query_image = "SELECT imagen FROM producto WHERE id_producto= $id_image;";
+
+              $result_tasks = mysqli_query($link, $query_image);
+
+              $img_data = mysqli_fetch_assoc($result_tasks);
+
+              echo '<img src="data:image/jpeg;base64,'.base64_encode($img_data['imagen']).'" name="img-'.$row['nombre'].'" border="0" width="120" height="auto"/>';
+            ?>
           </td>
           <td width="60%" >
             <b><?php echo $row['nombre']; ?></b>
