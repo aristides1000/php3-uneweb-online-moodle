@@ -7,6 +7,7 @@
   $vector = mysqli_fetch_array($query);
 ?>
   <div class="content-center wrap">
+    <h1>Agregar al Carrito</h1>
     <div class="producto">
       <table class="table-element">
         <tr>
