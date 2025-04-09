@@ -6,13 +6,13 @@
   $query = mysqli_query($link, $sql);
   $vector = mysqli_fetch_array($query);
 ?>
-  <div class="content-center wrap">
+  <div class="content-center">
     <h1>Agregar al Carrito</h1>
     <div class="producto">
       <table class="table-element">
         <tr>
           <td width="40%">
-            <img src="data:image/jpeg;base64,<?php echo base64_encode($vector['imagen']) ?>" name="img-<?php echo $vector[1] ?>" border="0" width="120" height="auto"/>
+            <img src="data:image/jpeg;base64,<?php echo base64_encode($vector['imagen']) ?>" name="img-<?php echo $vector[1] ?>" width="120" height="auto"/>
           </td>
           <td width="60%">
             <b><?php echo $vector[1]; ?></b>
