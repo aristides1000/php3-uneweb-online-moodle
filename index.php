@@ -1,12 +1,12 @@
 <?php
-session_start();
-include 'link.php';
-include 'cabecera.php';
-$sql = 'select * from producto where cantidad>0';
-$query = mysqli_query($link,$sql);
-$num = mysqli_num_rows($query);
+  session_start();
+  include 'link.php';
+  include 'cabecera.php';
+  $sql = 'select * from producto where cantidad>0';
+  $query = mysqli_query($link,$sql);
+  $num = mysqli_num_rows($query);
 ?>
-<html >
+<html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>PHP3 - CARRITO DE COMPRA</title>
