@@ -124,26 +124,26 @@ if(isset($_POST['val'])) {
         <?php
       }
       break;
-      case 4 : //carga de productos en el carrito
-        date_default_timezone_set('America/Caracas');
-        $fecha = date('Y-m-d h:i:s');
-        $sql = "INSERT INTO carrito (id_usuario, id_producto, cantidad, fecha) VALUES ('$_SESSION[id_usuario]','$_POST[id_producto]', '$_POST[cantidad]','$fecha')";
-        mysqli_query($link,$sql);
-        if (mysqli_error($link))
-        {?>
-          <script> alert("Error en la carga del producto al carrito. "); </script>
-          <meta http-equiv="refresh" content="2;URL=./agregar_carro.php" />
-          <?php
-        }
-        else
-        {
-          $sql1 = "update producto set cantidad = cantidad - '$_POST[cantidad]' where id_producto = '$_POST[id_producto]' ";
-          mysqli_query($link,$sql1);
-        ?>
-          <script> alert("El producto ha sido agregado en su carrito. "); </script>
-          <meta http-equiv="refresh" content="2;URL=./index.php" />
-          <?php
-        }
-        break;
+    case 4 : //carga de productos en el carrito
+      date_default_timezone_set('America/Caracas');
+      $fecha = date('Y-m-d h:i:s');
+      $sql = "INSERT INTO carrito (id_usuario, id_producto, cantidad, fecha) VALUES ('$_SESSION[id_usuario]','$_POST[id_producto]', '$_POST[cantidad]','$fecha')";
+      mysqli_query($link,$sql);
+      if (mysqli_error($link))
+      {?>
+        <script> alert("Error en la carga del producto al carrito. "); </script>
+        <meta http-equiv="refresh" content="2;URL=./agregar_carro.php" />
+        <?php
+      }
+      else
+      {
+        $sql1 = "update producto set cantidad = cantidad - '$_POST[cantidad]' where id_producto = '$_POST[id_producto]' ";
+        mysqli_query($link,$sql1);
+      ?>
+        <script> alert("El producto ha sido agregado en su carrito. "); </script>
+        <meta http-equiv="refresh" content="2;URL=./index.php" />
+        <?php
+      }
+      break;
   }
 }
