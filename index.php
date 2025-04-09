@@ -55,6 +55,7 @@ function carrito(idp) {
   </p>
 </div>
 <div class="content-center wrap">
+  <h1>Tienda Virtual</h1>
   <div id="productos" class="productos">
   <?php
   if($num==0)
