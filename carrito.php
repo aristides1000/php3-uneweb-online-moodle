@@ -65,7 +65,7 @@ if ($num == 0) { ?>
               <td align="center"><?php print $total = $row[2] * $row[4]; ?></td>
               <td align="center">
                 <a href="#" onclick="eliminar('<?php echo $row[1]; ?>','<?php echo $row[0]; ?>','<?php echo $row[4]; ?>')">
-                  <img src="images/elim.png" alt="borrar" width="35" height="auto" id="borrar1" />
+                  <img src="./images/elim.png" alt="borrar" width="35" height="auto" id="borrar1" />
                 </a>
               </td>
             </tr>
